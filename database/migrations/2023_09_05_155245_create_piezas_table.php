@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('idpieza')->unique();
             $table->string('nombrepieza');
-            $table->integer('pesoteorico')->nullable();
-            $table->integer('pesoreal')->nullable();
+            $table->string('pesoteorico')->nullable();
+            $table->string('pesoreal')->nullable();
             $table->string('estado');
+
             $table->unsignedBigInteger('bloque_id');
             $table->foreign('bloque_id')->references('id')->on('bloques')->onDelete('cascade');
+
+            $table->unsignedBigInteger('proyecto_id');
+            $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('cascade');
+
             $table->string('registrado');
             $table->timestamps();
         });
